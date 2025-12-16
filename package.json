@@ -1,15 +1,18 @@
 {
-  "name": "universal-cypress-framework",
-  "version": "1.0.1",
-  "description": "Universal Cypress automation framework",
+  "name": "@rajibdhl/cypress-template",
+  "version": "5.0.0",
+  "description": "Cypress automation starter template",
   "bin": {
-    "universal-cypress-framework": "./bin/index.js"
+    "create-cypress-template": "./bin/create.js"
   },
   "files": [
     "bin",
     "template"
   ],
+  "engines": {
+    "node": ">=16"
+  },
   "dependencies": {
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.3.2"
   }
 }
