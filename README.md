@@ -1,90 +1,78 @@
-# Cypress Automation Framework
+Cypress Automation Framework
 
-A reusable, pre-configured Cypress automation framework designed for **rapid**, **scalable**, and **maintainable** end-to-end testing.
+A reusable, pre-configured Cypress automation framework designed for rapid, scalable, and maintainable end-to-end testing.
 
----
+🚀 Installation & Setup Guide
 
-## 🚀 Installation & Setup Guide
-
-### 1. One-Step Installation
-
+1. One-Step Installation
 Create a new Cypress project using a single command:
-
-```bash
+Bash
 npx @rajibdhl/cypress-template <folder-name>
 
 What this command does:
-•	Downloads the framework from NPM
-•	Copies all required framework files:
-o	cypress/
-o	cypress.config.js
-o	supporting configuration files
-•	Automatically runs npm install to install dependencies
-________________________________________
-2. Dependency Management
-If you need to reinstall or update dependencies later, run:
+•	Downloads the framework from NPM.
+•	Copies all required framework files (cypress/, cypress.config.js, etc.).
+•	Automatically runs npm install to setup dependencies.
 
-```bash
-npm install
-
-🔐 Environment Configuration (Required)
-This framework uses dotenv for secure environment configuration.
-Steps:
-1.	Update the values inside .env:
-
+2. Environment Configuration
+This framework uses dotenv for secure configuration. Update the .env file in your root directory:
+Code snippet
 BASE_URL=https://your-application-url.com
 USERNAME=your_username
 PASSWORD=your_password
-
-These environment variables are automatically loaded into Cypress and can be accessed using Cypress.env().
-
-▶️ Available Test Commands
-Use the following NPM scripts to execute tests:
-Script	Command	Description
-Open Test Runner	npm run cy:open	Launches Cypress Test Runner (GUI)
-Run Tests (Headless)	npm run cy:run	Runs all tests headlessly
-Run in Chrome	npm run cy:run:chrome	Runs tests headlessly in Chrome
+Access these in tests using Cypress.env().
 ________________________________________
-🏗️ Framework Structure & Utilities
-This template follows the Page Object Model (POM) to ensure:
-•	Clean test structure
-•	Reusability
-•	Easy maintenance
+
+🏗️ Framework Structure
+This template follows the Page Object Model (POM) for clean, modular code.
+Plaintext
 cypress/
-├── e2e/
-├── fixtures/
-├── support/
-│   ├── commands.js
-│   └── utils/
-│       └── utils.js
+├── e2e/            # Test specifications
+├── fixtures/       # Static test data
+├── pages/          # Page Object classes
+└── support/        
+    ├── commands.js # Custom Cypress commands
+    └── utils/      # Core Utility Classes
+        ├── utils.js      # General UI/API helpers
+        ├── fakerUtils.js # Random data generation
+        └── tableUtils.js # Advanced table assertions
 ________________________________________
+
 🧰 Core Utility Classes
-Location:
-cypress/support/utils/utils.js
-This file provides reusable utility classes to simplify test writing.
-________________________________________
-1. Utils Class (UI Actions & Assertions)
-Provides chainable helper methods for UI interactions and API validations.
+
+1. Utils Class (General Actions)
+Location: support/utils/utils.js
 Method	Purpose	Example
-clickElement(selector)	Clicks an element	new Utils().clickElement('#submit-btn')
-typeText(selector, text)	Clears and types into input	new Utils().typeText('#username', 'testuser')
-assertApiStatus(alias, status)	Validates API response status	new Utils().assertApiStatus('@login', 200)
-waitForLoader(selector)	Waits for loader to disappear	new Utils().waitForLoader()
-________________________________________
-2. FakerUtils Class (Random Test Data)
-Uses @faker-js/faker to generate realistic test data.
+clickElement(sel)	Clicks an element	new Utils().clickElement('#btn')
+typeText(sel, txt)	Clears and types	new Utils().typeText('#user', 'admin')
+assertApiStatus(a, s)	Validates API status	new Utils().assertApiStatus('@getData', 200)
+
+2. FakerUtils Class (Dynamic Data)
+Location: support/utils/fakerUtils.js
 Method	Purpose	Example
 getFirstName()	Random first name	const name = new FakerUtils().getFirstName()
-getEmail()	Random email address	new Utils().typeText('#email', new FakerUtils().getEmail())
+getEmail()	Random email	new FakerUtils().getEmail()
+
+3. TableUtils Class (Advanced Grids) 🆕
+Location: support/utils/tableUtils.js
+A specialized class to handle complex HTML table validations.
+Method	Purpose
+Check Visibility	Verifies the table is visible in the DOM.
+Assert Headers	Validates table column names against an expected array.
+Assert Values	Checks specific cell data or row content.
+Assert Actions	Validates buttons/links (Edit, Delete) within table rows.
+Assert Whole Table	Comprehensive check of structure and data in one go.
 ________________________________________
+
+▶️ Available Test Commands
+Script	Command	Description
+Open Runner	npm run cy:open	Launches Cypress GUI
+Headless Run	npm run cy:run	Runs all tests in terminal
+Chrome Run	npm run cy:run:chrome	Runs headlessly specifically in Chrome
+________________________________________
+
 📊 Reporting (Mochawesome)
-This framework is configured with Mochawesome for detailed HTML reporting.
-Report Details:
-•	Generated Automatically on npm run cy:run
-•	Location:
-•	cypress/reports
-•	History Preserved:
-Reports do not overwrite previous runs, enabling test result tracking over time
-
-
+Detailed HTML reports are generated automatically on every headless run.
+•	Location: cypress/reports
+•	History: Reports are timestamped/unique, ensuring previous test results are preserved for tracking.
 
