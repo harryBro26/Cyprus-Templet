@@ -41,9 +41,10 @@ export default class FakerUtils {
     }
 
     getPhoneNumber() {
-        // Updated to use current Faker method
-        return faker.phone.number('###-###-####');
-    }
+    const prefix = faker.helpers.arrayElement(['98', '97']);
+    const remaining = faker.string.numeric(8); // Generate 8 digits
+    return prefix + remaining;
+  }
 
     getWebsite() {
         return faker.internet.url();
