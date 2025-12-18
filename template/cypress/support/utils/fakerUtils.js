@@ -1,5 +1,4 @@
-import { Faker } from "@faker-js/faker"
-const faker = new Faker()
+import { faker } from "@faker-js/faker"
 
 // ====================================================================
 // FAKER DATA GENERATION UTILITIES
@@ -10,6 +9,9 @@ export default class FakerUtils {
 
     getFirstName() {
         return faker.person.firstName();
+    }
+    getMiddleName() {
+        return faker.person.middleName();
     }
 
     getLastName() {
